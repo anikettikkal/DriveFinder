@@ -43,15 +43,6 @@ export default function Header() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/about"
-                                    className={() =>
-                                        `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                                    }
-                                >
-                                    About
-                                </NavLink>
-                            </li>
-                            <li>
                                 <NavLink to="/contact"
                                     className={() =>
                                         `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
@@ -61,7 +52,17 @@ export default function Header() {
                                 </NavLink>
                             </li>
                             <li>
+                                <NavLink to="/about"
+                                    className={() =>
+                                        `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                                    }
+                                >
+                                    About
+                                </NavLink>
+                            </li>
+                            <li>
                                 <NavLink 
+                                
                                     className={() =>
                                         `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                                     }
