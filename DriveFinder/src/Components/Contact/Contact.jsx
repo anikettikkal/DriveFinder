@@ -37,7 +37,7 @@ export default function Contact() {
                                     />
                                 </svg>
                                 <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                                    Acme Inc, Street, State, Postal Code
+                                    Deolali Pravara, Tal.Rahuri - 413716
                                 </div>
                             </div>
 
@@ -59,7 +59,7 @@ export default function Contact() {
                                     />
                                 </svg>
                                 <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                                    +44 1234567890
+                                    +91 9970602232
                                 </div>
                             </div>
 
@@ -81,12 +81,12 @@ export default function Contact() {
                                     />
                                 </svg>
                                 <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                                    info@acme.org
+                                    tikkalaniket2019@gmail.com
                                 </div>
                             </div>
                         </div>
 
-                        <form className="p-6 flex flex-col justify-center">
+                        <form action="https://formspree.io/f/myzkvpqk" method="POST" className="p-6 flex flex-col justify-center">
                             <div className="flex flex-col">
                                 <label for="name" className="hidden">
                                     Full Name
@@ -113,18 +113,18 @@ export default function Contact() {
                                 />
                             </div>
 
+
                             <div className="flex flex-col mt-2">
-                                <label for="tel" className="hidden">
-                                    Number
-                                </label>
-                                <input
-                                    type="tel"
-                                    name="tel"
-                                    id="tel"
-                                    placeholder="Telephone Number"
+                                <label htmlFor="message" className="hidden">Message</label>
+                                <textarea
+                                    name="message"
+                                    id="message"
+                                    placeholder="Your Message"
+                                    rows="4"
                                     className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none"
-                                />
+                                ></textarea>
                             </div>
+
 
                             <button
                                 type="submit"
