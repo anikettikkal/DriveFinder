@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom"
 import Logo from "./../../assets/Logo/logo.png"
 
 
 export default function Header() {
+    const [username, setUsername] = useState("");
+
+    useEffect(() => {
+        const username = localStorage.getItem('name'); // Get name from localStorage
+        console.log(username);
+        setUsername(username); // ✅ Console it
+    }, []);
+
     return (
         <header className="shadow sticky z-50 top-0">
             <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
@@ -26,7 +34,7 @@ export default function Header() {
                             to="#"
                             className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
-                            Log in
+                             {username || "Guest"}
                         </Link>
                         <Link
                             to="#"
