@@ -40,11 +40,12 @@ export default function Home() {
                 <div style={{display:"flex",flexWrap:"wrap",justifyContent:"space-evenly"}}>
                     <Cards image="https://img.freepik.com/free-vector/
                     small-car-concept-illustration_114360-29987.jpg?
-                    t=st=1740158368~exp=1740161968~hmac=39188f76efcb33f10f94a3ca307ae1aeea5b9fbcd45345abbd205155ca462a44&w=900" title="Cars ! Your Perfect Ride for Every Journey" paragraph="For Family Trips: Spacious cars with ample luggage space for a comfortable journey."/>
+                    t=st=1740158368~exp=1740161968~hmac=39188f76efcb33f10f94a3ca307ae1aeea5b9fbcd45345abbd205155ca462a44&w=900" title="Cars ! Your Perfect Ride for Every Journey" 
+                    paragraph="For Family Trips: Spacious cars with ample luggage space for a comfortable journey." navigate="/RentalCars"/>
                     <Cards image="https://img.freepik.com/premium-vector/ambulance-travels-call-sick-patient-flat-illustration_124715-541.jpg?w=996" 
-                    title="Emergency Ambulance Service!" paragraph="For Medical Emergencies: Fast and reliable ambulance service available 24/7." />
+                    title="Emergency Ambulance Service!" navigate="/Emergency" paragraph="For Medical Emergencies: Fast and reliable ambulance service available 24/7." />
                     <Cards image="https://img.freepik.com/free-vector/dad-mom-children-traveling-camper_74855-7139.jpg?t=st=1740160754~exp=1740164354~hmac=2c6133b544f820b1982c81cb8337e5a927aac3ede0be02c342494c3dd57f8ee2&w=1380"
-                    title="Mini Bus for Group Travel Made Easy!" paragraph="Comfort & Convenience: Ideal for city tours, events, and long-distance travel."/>
+                    title="Mini Bus for Group Travel Made Easy!" navigate="/Trip" paragraph="Comfort & Convenience: Ideal for city tours, events, and long-distance travel."/>
                 </div>
             </div>
         </div>
