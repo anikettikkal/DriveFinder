@@ -17,7 +17,6 @@ export default function Footer() {
                                 <span className="text-2xl font-extrabold text-gray-800 tracking-wide">
                                     <span className="text-orange-600">Drive</span>Finder
                                 </span>
-
                             </div>
                         </Link>
                     </div>

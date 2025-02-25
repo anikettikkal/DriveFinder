@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Cards({ image, title, paragraph, navigate }) {
     return (
         <>
-             <div className="max-w-sm mt-7 mx-auto bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+             <div className="max-w-sm mt-7 mb-7 mx-auto bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
                 <img
                     src={image}
                     alt="Minimal design"
