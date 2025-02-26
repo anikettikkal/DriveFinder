@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
-    const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+    const [formData, setFormData] = useState({ name: '', email: '', password: '',role:"user" });
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -12,15 +12,21 @@ export default function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+    
         axios.post('http://localhost:3000/Signup', formData)
             .then((response) => {
-                alert(response.data.message);
-                localStorage.setItem('name', response.data.data.name); 
-                navigate('/login');
+                if (response.data.message === "User already exists") {
+                    alert("User with this email already exists. Please use another email or log in.");
+                } else {
+                    alert(response.data.message);
+                    localStorage.setItem('name', response.data.data.name);
+                    localStorage.setItem('role', response.data.data.role); 
+                    navigate('/login');
+                }
             })
-            .catch(() => alert('Signup failed'));
+            .catch(() => alert('Signup failed ! try again'));
     };
+    
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">

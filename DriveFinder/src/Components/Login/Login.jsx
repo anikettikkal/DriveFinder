@@ -13,17 +13,31 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+    
         axios.post('http://localhost:3000/login', formData)
             .then(response => {
                 if (response.data.status) {
+                    const { role, token } = response.data.data; // Extract role and token (if available)
+    
+                    // ✅ Store role in localStorage
+                    localStorage.setItem('role', response.data.data.role); // Save role
+                    localStorage.setItem('name', response.data.data.name);
+                    
+                    // ✅ Store token in localStorage (if your backend provides it)
+                    localStorage.setItem('token', token);
+    
                     alert(response.data.message);
                     navigate('/home'); // ✅ Redirect on success
                 } else {
                     alert(response.data.message);
                 }
+            })
+            .catch(error => {
+                console.error("Login Error:", error);
+                alert("An error occurred during login.");
             });
     };
+    
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -66,7 +80,7 @@ export default function Login() {
                 </form>
 
                 <p className="text-center text-gray-600">
-                    Don't have an account? <Link to="/signup" className="text-orange-600 font-bold">Sign up</Link>
+                    Don't have an account? <Link to="/" className="text-orange-600 font-bold">Sign up</Link>
                 </p>
             </div>
         </div>

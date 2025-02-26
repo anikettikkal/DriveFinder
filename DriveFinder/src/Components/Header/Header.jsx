@@ -12,6 +12,11 @@ export default function Header() {
         setUsername(username); // ✅ Console it
     }, []);
 
+    function logOut() {
+        localStorage.removeItem('currentUser');
+        window.location.href = './login'
+    }
+
     return (
         <header className="shadow sticky z-50 top-0">
             <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
@@ -38,6 +43,7 @@ export default function Header() {
                         </Link>
                         <Link
                             to="#"
+                            onClick={logOut}
                             className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
                             Logout
