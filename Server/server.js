@@ -1,21 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./mongoconn');
-const RentalCar = require('./model/RentalCar');
 const User = require('./model/User');
 const bodyParser = require('body-parser');
-const multer = require("multer");
+const mongoose = require("mongoose");
+const RentalCar = require('./model/RentalCar');
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/"); // Store images in "uploads" folder
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + "-" + file.originalname);
-    },
-});
 
-const upload = multer({ storage });
+
+
+
 
 //initialize express app
 const app = express();
@@ -70,103 +64,66 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Create Rental Car API
-app.post("/RentalCar", async (req, res) => {
+// 🚀 API: Add a Rental Car
+app.post("/Rentalcar", async (req, res) => {
     try {
-        const { image, ownerName, ownerContact, seater, carName, location, carNumber } = req.body;
-
-        if (!image || !ownerName || !ownerContact || !seater || !carName || !location || !carNumber) {
-            return res.status(400).json({ success: false, message: "All fields are required" });
-        }
-
-        const rentalCar = new RentalCar({
-            image,
-            ownerName,
-            ownerContact,
-            seater,
-            carName,
-            location,
-            carNumber
-        });
-
-        const savedRentalCar = await rentalCar.save();
-
-        res.status(201).json({
-            success: true,
-            message: "Rental car added successfully",
-            data: savedRentalCar
-        });
+      const { CarImage, carname, OwnerName, contactNumber, CarNumber, seater, location } = req.body;
+  
+      const newCar = await RentalCar.create({
+        CarImage,
+        carname,
+        OwnerName,
+        contactNumber,
+        CarNumber,
+        seater,
+        location
+      });
+  
+      res.json({ status: true, message: "Car Added Successfully", data: newCar });
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+      res.status(500).json({ status: false, message: "Error Adding Car" });
     }
-});
-
-app.get("/RentalCar", async (req, res) => {
+  });
+  
+  // 🚀 API: Get All Rental Cars
+  app.get("/Rentalcar", async (req, res) => {
     try {
-        const cars = await RentalCar.find();
-        res.json(cars);
+      const cars = await RentalCar.find();
+      res.json({ status: true, data: cars });
     } catch (error) {
-        res.status(500).send(error.message);
+      res.status(500).json({ status: false, message: "Error Fetching Cars" });
     }
-});
-
-// Update rental car details
-app.put("/RentalCar/:id", async (req, res) => {
+  });
+  
+  // 🚀 API: Update a Rental Car
+  app.put("/RentalCar/:id", async (req, res) => {
     try {
-        const { id } = req.params;
-        const updatedData = req.body;
-        const updatedCar = await RentalCar.findByIdAndUpdate(id, updatedData, { new: true });
-
-        if (!updatedCar) {
-            return res.status(404).json({ success: false, message: "Car not found" });
-        }
-
-        res.json({ success: true, message: "Car updated successfully", data: updatedCar });
+      const updatedCar = await RentalCar.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      if (!updatedCar) {
+        return res.status(404).json({ status: false, message: "Car not found" });
+      }
+      res.json({ status: true, message: "Car updated successfully", data: updatedCar });
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+      console.error("Error updating car:", error);
+      res.status(500).json({ status: false, message: "Server error" });
     }
-});
-
-// Delete a rental car
-app.delete("/RentalCar/:id", async (req, res) => {
+  });
+  
+  
+  // 🚀 API: Delete a Rental Car
+  app.delete("/Rentalcar/:id", async (req, res) => {
     try {
-        const { id } = req.params;
-        const deletedCar = await RentalCar.findByIdAndDelete(id);
-
-        if (!deletedCar) {
-            return res.status(404).json({ success: false, message: "Car not found" });
-        }
-
-        res.json({ success: true, message: "Car deleted successfully" });
+      const deletedCar = await RentalCar.findByIdAndDelete(req.params.id);
+  
+      if (!deletedCar) {
+        return res.status(404).json({ status: false, message: "Car Not Found" });
+      }
+  
+      res.json({ status: true, message: "Car Deleted Successfully" });
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+      res.status(500).json({ status: false, message: "Error Deleting Car" });
     }
-});
-
-// Upload image
-
-app.put("/RentalCar/:id", upload.single("image"), async (req, res) => {
-    try {
-        const { id } = req.params;
-        const updatedData = req.body;
-
-        if (req.file) {
-            updatedData.image = `/uploads/${req.file.filename}`;
-        }
-
-        const updatedCar = await RentalCar.findByIdAndUpdate(id, updatedData, { new: true });
-
-        if (!updatedCar) {
-            return res.status(404).json({ success: false, message: "Car not found" });
-        }
-
-        res.json({ success: true, message: "Car updated successfully", data: updatedCar });
-    } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
-    }
-});
-
-
+  });
 
 
 
