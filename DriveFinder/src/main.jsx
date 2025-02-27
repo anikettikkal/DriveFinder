@@ -12,6 +12,7 @@ import Emergency from './Views/Emergency/Emergenc.jsx'
 import Trip from './Views/Trip/Trip.jsx'
 import Signup from './Components/Signup/Signup.jsx'
 import Login from './Components/Login/Login.jsx'
+import Dashboard from './Dashboard/DashBoard.jsx'
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path:"rentalCars",
         element:<RentalCars />
+      },
+      {
+        path:'dashboard',
+        element:<Dashboard />
       }
     ]
   }
