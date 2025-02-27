@@ -5,7 +5,9 @@ import RentalCard from "../../MainCarsCard/RentalCard";
 
 const RentalCars = () => {
   const [cars, setCars] = useState([]);
+
   const userRole = localStorage.getItem("role"); // Get role from localStorage
+
 
   useEffect(() => {
     axios
@@ -44,21 +46,26 @@ const RentalCars = () => {
     }
   };
 
+
+
   return (
-    <div className="container mx-auto px-4 py-6">
-      <h1 className="text-3xl font-bold text-center mb-6">Available Cars</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {cars.map((car) => (
-          <RentalCard
-            key={car._id}
-            car={car}
-            userRole={userRole}
-            onDelete={handleDelete}
-            onEdit={handleEdit}
-          />
-        ))}
+    <>
+      
+      <div className="container mx-auto px-4 py-6">
+        <h1 className="text-3xl font-bold text-center mb-6">Available Cars</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {cars.map((car) => (
+            <RentalCard
+              key={car._id}
+              car={car}
+              userRole={userRole}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
