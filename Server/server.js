@@ -11,10 +11,10 @@ const RentalCar = require('./model/RentalCar');
 
 //initialize express app
 const app = express();
-app.use(cors({
-  origin: "https://drivefinder.onrender.com",
-  methods: ["GET", "POST", "PUT", "DELETE"]
-}));
+// app.use(cors({
+//   origin: "https://drivefinder.onrender.com",
+//   methods: ["GET", "POST", "PUT", "DELETE"]
+// }));
 //middleware
 app.use(cors());
 app.use(bodyParser.json());

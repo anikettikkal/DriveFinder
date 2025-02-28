@@ -31,7 +31,7 @@ const Dashboard = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("https://drivefinder.onrender.com/RentalCar", carData);
+            const res = await axios.post("http://localhost:3000/RentalCar", carData);
             if (res.data.status) {
                 alert("Car added successfully!");
                 setCarData({
@@ -52,7 +52,8 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="p-6 bg-white rounded-lg shadow-md max-w-lg mx-auto">
+        <>
+        <div className="p-6 mt-7 mb-6 bg-white rounded-lg shadow-md max-w-lg mx-auto">
             <h2 className="text-2xl font-bold mb-4">Add New Car</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <input
@@ -73,6 +74,7 @@ const Dashboard = () => {
                 <button type="submit" className="bg-blue-500 text-white p-2 rounded w-full">Add Car</button>
             </form>
         </div>
+        </>
     );
 };
 
