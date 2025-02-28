@@ -3,9 +3,7 @@ const cors = require('cors');
 const connectDB = require('./mongoconn');
 const User = require('./model/User');
 const bodyParser = require('body-parser');
-const mongoose = require("mongoose");
 const RentalCar = require('./model/RentalCar');
-
 
 
 
@@ -13,7 +11,10 @@ const RentalCar = require('./model/RentalCar');
 
 //initialize express app
 const app = express();
-
+app.use(cors({
+  origin: "https://drivefinder.onrender.com",
+  methods: ["GET", "POST", "PUT", "DELETE"]
+}));
 //middleware
 app.use(cors());
 app.use(bodyParser.json());
