@@ -13,7 +13,7 @@ export default function Signup() {
     const handleSubmit = (e) => {
         e.preventDefault();
     
-        axios.post('http://localhost:3000/Signup', formData)
+        axios.post('https://drivefinder.onrender.com/Signup', formData)
             .then((response) => {
                 if (response.data.message === "User already exists") {
                     alert("User with this email already exists. Please use another email or log in.");
