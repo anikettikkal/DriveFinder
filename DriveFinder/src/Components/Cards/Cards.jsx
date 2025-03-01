@@ -14,7 +14,7 @@ function Cards({ image, title, paragraph, navigate }) {
                     <p className="mt-2 text-gray-600">{paragraph}</p>
                     <Link to={navigate}>
                         <button className="mt-4 w-full bg-white text-gray-800 border border-gray-300 font-bold py-2 px-4 rounded-lg shadow-lg hover:border-orange-500 hover:text-orange-600 transition-all duration-300">
-                            Search Cars
+                            Search More
                         </button>
                     </Link>
                 </div>

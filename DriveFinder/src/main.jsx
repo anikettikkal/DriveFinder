@@ -13,6 +13,10 @@ import Trip from './Views/Trip/Trip.jsx'
 import Signup from './Components/Signup/Signup.jsx'
 import Login from './Components/Login/Login.jsx'
 import Dashboard from './Dashboard/DashBoard.jsx'
+import Construction from './Views/Construction/Construction.jsx'
+import Agriculture from './Views/Agriculture/Agriculture.jsx'
+import Heavy from './Views/Heavy/Heavy.jsx'
+import Light from './Views/Light/Light.jsx'
 
 
 const router = createBrowserRouter([
@@ -45,6 +49,22 @@ const router = createBrowserRouter([
       {
         path:"rentalCars",
         element:<RentalCars />
+      },
+      {
+        path:"construction",
+        element:<Construction />
+      },
+      {
+        path:"agriculture",
+        element:<Agriculture />
+      },
+      {
+        path:"heavy",
+        element:<Heavy />
+      },
+      {
+        path:"light",
+        element:<Light />
       },
       {
         path:'dashboard',
