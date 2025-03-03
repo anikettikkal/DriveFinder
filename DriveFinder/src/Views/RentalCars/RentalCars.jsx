@@ -11,7 +11,7 @@ const RentalCars = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/RentalCar")
+      .get("http://localhost:3000/api/rentalcar/RentalCar")
       .then((res) => {
         if (res.data.status) setCars(res.data.data);
       })
@@ -22,7 +22,7 @@ const RentalCars = () => {
     if (!window.confirm("Are you sure you want to delete this car?")) return;
 
     try {
-      const res = await axios.delete(`http://localhost:3000/RentalCar/${id}`);
+      const res = await axios.delete(`http://localhost:3000/api/rentalcar/RentalCar/${id}`);
       if (res.data.status) {
         setCars(cars.filter((car) => car._id !== id));
       } else {
@@ -35,7 +35,7 @@ const RentalCars = () => {
 
   const handleEdit = async (updatedCar) => {
     try {
-      const res = await axios.put(`http://localhost:3000/RentalCar/${updatedCar._id}`, updatedCar);
+      const res = await axios.put(`http://localhost:3000/api/rentalcar/RentalCar/${updatedCar._id}`, updatedCar);
       if (res.data.status) {
         setCars(cars.map((car) => (car._id === updatedCar._id ? updatedCar : car)));
       } else {

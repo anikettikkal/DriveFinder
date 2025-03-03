@@ -31,7 +31,7 @@ const Dashboard = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3000/RentalCar", carData);
+            const res = await axios.post("http://localhost:3000/api/rentalcar/RentalCar", carData);
             if (res.data.status) {
                 alert("Car added successfully!");
                 setCarData({
