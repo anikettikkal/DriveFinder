@@ -14,7 +14,7 @@ export default function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
     
-        axios.post('http://localhost:3000/login', formData)
+        axios.post('http://localhost:3000/api/users/login', formData)
             .then(response => {
                 if (response.data.status) {
                     const { role, token } = response.data.data; // Extract role and token (if available)

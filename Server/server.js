@@ -4,6 +4,7 @@ const connectDB = require('./mongoconn');
 const User = require('./model/User');
 const bodyParser = require('body-parser');
 const RentalCar = require('./model/RentalCar');
+const userRoutes = require('./routes/userRoutes');
 
 
 
@@ -31,39 +32,42 @@ app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 
 //api for signup
 
-app.post('/Signup', async (req, res) => {
-    const { name, email, password } = req.body;
+// app.post('/Signup', async (req, res) => {
+//     const { name, email, password } = req.body;
 
-    const result = await User.create({ name, email, password,role: 'user' });
+//     const result = await User.create({ name, email, password,role: 'user' });
 
-    res.json({
-        status: true,
-        message: 'User Created Succesfully',
-        data: result
-    });
-});
-
-
+//     res.json({
+//         status: true,
+//         message: 'User Created Succesfully',
+//         data: result
+//     });
+// });
 
 
-//api for login
 
-app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email, password });
-    if (user) {
-        res.json({
-            status: true,
-            message: 'User Found',
-            data: user
-        });
-    } else {
-        res.json({
-            status: false,
-            message: 'User Not Found'
-        });
-    }
-});
+
+// //api for login
+
+// app.post('/login', async (req, res) => {
+//     const { email, password } = req.body;
+//     const user = await User.findOne({ email, password });
+//     if (user) {
+//         res.json({
+//             status: true,
+//             message: 'User Found',
+//             data: user
+//         });
+//     } else {
+//         res.json({
+//             status: false,
+//             message: 'User Not Found'
+//         });
+//     }
+// });
+
+//routes
+app.use('/api/users', userRoutes);
 
 // 🚀 API: Add a Rental Car
 app.post("/Rentalcar", async (req, res) => {
