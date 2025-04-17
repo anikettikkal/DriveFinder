@@ -4,6 +4,8 @@ const connectDB = require('./mongoconn');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const rentalRoutes = require('./routes/rentalRoutes');
+const emergencyRoutes = require('./routes/emergencyRoutes');
+
 
 
 
@@ -34,6 +36,8 @@ app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 //routes
 app.use('/api/users', userRoutes);
 app.use('/api/rentalcar', rentalRoutes);
+app.use("/api/emergency", emergencyRoutes);
+app.use("/uploads", express.static("uploads"));
 
       
 

@@ -1,13 +1,12 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import RentalCard from "../../MainCarsCard/RentalCard";
 
 const RentalCars = () => {
   const [cars, setCars] = useState([]);
+  const [search, setSearch] = useState(""); // 🔍 Search state
 
-  const userRole = localStorage.getItem("role"); // Get role from localStorage
-
+  const userRole = localStorage.getItem("role");
 
   useEffect(() => {
     axios
@@ -46,26 +45,40 @@ const RentalCars = () => {
     }
   };
 
-
+  // 🔍 Filter cars by location, car name, or seater
+  const filteredCars = cars.filter((car) =>
+    `${car.name} ${car.location} ${car.seater}`
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
 
   return (
-    <>
-      
-      <div className="container mx-auto px-4 py-6">
-        <h1 className="text-3xl font-bold text-center mb-6">Available Cars</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {cars.map((car) => (
-            <RentalCard
-              key={car._id}
-              car={car}
-              userRole={userRole}
-              onDelete={handleDelete}
-              onEdit={handleEdit}
-            />
-          ))}
-        </div>
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="text-3xl font-bold text-center mb-6">Available Cars</h1>
+
+      {/* 🔍 Search Input */}
+      <div className="mb-6 flex justify-center">
+        <input
+          type="text"
+          placeholder="Search by location, car name, or seater..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full sm:w-1/2 p-2 border border-gray-300 rounded-md"
+        />
       </div>
-    </>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {filteredCars.map((car) => (
+          <RentalCard
+            key={car._id}
+            car={car}
+            userRole={userRole}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

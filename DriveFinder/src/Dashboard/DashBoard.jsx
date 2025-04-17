@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // If using React Router
+import Emergency from "../Views/Emergency/Emergency";
+import EmergencyCarForm from "../Components/Forms/EmergencyCarForm";
 
 const Dashboard = () => {
     const [carData, setCarData] = useState({
@@ -74,6 +76,7 @@ const Dashboard = () => {
                 <button type="submit" className="bg-blue-500 text-white p-2 rounded w-full">Add Car</button>
             </form>
         </div>
+        <EmergencyCarForm />
         </>
     );
 };
