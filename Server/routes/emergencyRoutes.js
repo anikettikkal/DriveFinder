@@ -32,4 +32,42 @@ router.get("/", async (req, res) => {
   }
 });
 
+// ✅ DELETE emergency by ID
+router.delete("/:id", async (req, res) => {
+  try {
+    await Emergency.findByIdAndDelete(req.params.id);
+    res.status(200).json({ status: true, message: "Deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ status: false, message: "Failed to delete", error });
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    const { ownerName, ownerContact, carNumber, location, hospitalName } = req.body;
+
+    const updatedEmergency = await Emergency.findByIdAndUpdate(
+      req.params.id,
+      {
+        ownerName,
+        ownerContact,
+        carNumber,
+        location,
+        hospitalName,
+      },
+      { new: true }
+    );
+
+    if (!updatedEmergency) {
+      return res.status(404).json({ status: false, message: "Emergency not found" });
+    }
+
+    res.status(200).json({ status: true, data: updatedEmergency });
+  } catch (error) {
+    console.error("Update error:", error);
+    res.status(500).json({ status: false, message: "Failed to update", error });
+  }
+});
+
+
 module.exports = router;
