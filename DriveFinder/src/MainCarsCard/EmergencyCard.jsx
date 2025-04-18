@@ -4,7 +4,7 @@ const EmergencyCard = ({ emergency }) => {
   return (
     <div className="bg-white p-4 rounded-lg shadow-md">
       <img
-        src={`http://localhost:3000/${emergency.carImage}`}
+        src={`http://localhost:3000${emergency.carImage}`}
         alt="Car Image"
         className="w-full h-64 object-cover rounded-md mb-4"
       />
