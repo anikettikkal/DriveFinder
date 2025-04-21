@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom"; // If using React Router
 import Emergency from "../Views/Emergency/Emergency";
 import EmergencyCarForm from "../Components/Forms/EmergencyCarForm";
+import TripForm from "../Components/Forms/TripForm";
 
 const Dashboard = () => {
     const [carData, setCarData] = useState({
@@ -77,6 +78,7 @@ const Dashboard = () => {
             </form>
         </div>
         <EmergencyCarForm />
+        <TripForm />
         </>
     );
 };
